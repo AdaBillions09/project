@@ -112,56 +112,56 @@ cardForm.addEventListener('submit', (e) => {
 
     // Card number: 16 digits
     const rawCardNumber = cardNumberInput.value;
-const cardNumDigits = rawCardNumber.replace(/\s/g, '');
+    const cardNumDigits = rawCardNumber.replace(/\s/g, '');
 
-if (!rawCardNumber.trim()) {
-    errorCardNumber.textContent = "Can't be blank";
-    cardNumberInput.classList.add('error');
-    isValid = false;
+    if (!rawCardNumber.trim()) {
+        errorCardNumber.textContent = "Can't be blank";
+        cardNumberInput.classList.add('error');
+        isValid = false;
 
-} else if (/[^0-9\s]/.test(rawCardNumber)) {
-    errorCardNumber.textContent = "Wrong format, numbers only";
-    cardNumberInput.classList.add('error');
-    isValid = false;
+    } else if (/[^0-9\s]/.test(rawCardNumber)) {
+        errorCardNumber.textContent = "Wrong format, numbers only";
+        cardNumberInput.classList.add('error');
+        isValid = false;
 
-} else if (!/^\d{16}$/.test(cardNumDigits)) {
-    errorCardNumber.textContent = "Card number must be 16 digits";
-    cardNumberInput.classList.add('error');
-    isValid = false;
-}
+    } else if (!/^\d{16}$/.test(cardNumDigits)) {
+        errorCardNumber.textContent = "Card number must be 16 digits";
+        cardNumberInput.classList.add('error');
+        isValid = false;
+    }
 
-const month = expMonthInput.value.trim();
-const year = expYearInput.value.trim();
+    const month = expMonthInput.value.trim();
+    const year = expYearInput.value.trim();
 
-errorExpMonth.textContent = "";
-errorExpYear.textContent = "";
+    errorExpMonth.textContent = "";
+    errorExpYear.textContent = "";
 
-let expiryValid = true;
+    let expiryValid = true;
 
-if (!month) {
-    errorExpMonth.textContent = "Can't be blank";
-    expMonthInput.classList.add("error");
-    expiryValid = false;
-} else if (!/^(0[1-9]|1[0-2])$/.test(month)) {
-    errorExpMonth.textContent = "Invalid month";
-    expMonthInput.classList.add("error");
-    expiryValid = false;
-}
+    if (!month) {
+        errorExpMonth.textContent = "Can't be blank";
+        expMonthInput.classList.add("error");
+        expiryValid = false;
+    } else if (!/^(0[1-9]|1[0-2])$/.test(month)) {
+        errorExpMonth.textContent = "Invalid month";
+        expMonthInput.classList.add("error");
+        expiryValid = false;
+    }
 
-if (!year) {
-    errorExpYear.textContent = "Can't be blank";
-    expYearInput.classList.add("error");
-    expiryValid = false;
-} else if (!/^\d{2}$/.test(year)) {
-    errorExpYear.textContent = "Invalid year";
-    expYearInput.classList.add("error");
-    expiryValid = false;
-}
+    if (!year) {
+        errorExpYear.textContent = "Can't be blank";
+        expYearInput.classList.add("error");
+        expiryValid = false;
+    } else if (!/^\d{2}$/.test(year)) {
+        errorExpYear.textContent = "Invalid year";
+        expYearInput.classList.add("error");
+        expiryValid = false;
+    }
 
-if (!expiryValid) {
-    isValid = false;
-}
-    
+    if (!expiryValid) {
+        isValid = false;
+    }
+
     // CVC: 3 digits
     if (!cvcInput.value) {
         errorCvc.textContent = "Can't be blank";
@@ -175,6 +175,11 @@ if (!expiryValid) {
 
     // If all valid, show success state
     if (isValid) {
+        cardForm.reset();
+        cardNumberDisplay.textContent = "0000 0000 0000 0000";
+        cardHolderDisplay.textContent = "JANE APPLESEED";
+        cardExpiryDisplay.textContent = "00/00";
+        cardCvcDisplay.textContent = "000";
         cardForm.classList.add('hidden');
         document.querySelector('.complete-state').classList.remove('hidden');
     }
